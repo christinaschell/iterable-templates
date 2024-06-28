@@ -87,8 +87,6 @@ def process_and_upsert_template(folder_name, campaign_name):
         payload_str = json.dumps(payload).replace("True", "true").replace("False", "false")
         payload_json = json.loads(payload_str)  # Convert back to dictionary to ensure proper JSON structure
 
-        print(f"Payload for {campaign_name}: {json.dumps(payload_json, indent=4)}")
-
         response = requests.post(UPSERT_TEMPLATE_URL, headers=HEADERS, json=payload_json)
         if response.status_code == 200:
             print(f"Successfully upserted template for {campaign_name}")
