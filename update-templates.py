@@ -1,10 +1,14 @@
 import os
 import json
 import requests
-from dotenv import load_dotenv
 
-# Load environment variables from .env file
-load_dotenv()
+try:
+    ITERABLE_API_KEY = os.environ["ITERABLE_API_KEY"]
+    DIRCTORY = os.environ["DIRCTORY"]
+except KeyError:
+    raise Exception("Error: Iterable API Key not found")
+
+directory = DIRCTORY
 
 # Your Iterable API key and endpoint
 API_KEY = os.getenv('ITERABLE_API_KEY')
