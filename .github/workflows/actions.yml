@@ -21,10 +21,12 @@ jobs:
           python -m pip install --upgrade pip
           pip3 install requests
 
-      - name: execute py script # run update-templates.py
+      - name: install dotenv package
         uses: c-py/action-dotenv-to-setenv@v5
         with:
           env-file: .env
+
+      - name: execute py script # run update-templates.py
         env:
           ITERABLE_API_KEY: ${{ secrets.ITERABLE_API_KEY }}
           DIRCTORY: ${{ github.workspace }}
