@@ -1,6 +1,7 @@
 import os
 import json
 import requests
+from dotenv import load_dotenv
 
 try:
     ITERABLE_API_KEY = os.environ["ITERABLE_API_KEY"]
@@ -9,6 +10,22 @@ except KeyError:
     raise Exception("Error: Iterable API Key not found")
 
 directory = DIRCTORY
+
+# Your Iterable API key and endpoint
+API_KEY = os.getenv('ITERABLE_API_KEY')
+BASE_URL = "https://api.iterable.com"
+UPSERT_TEMPLATE_URL = f"{BASE_URL}/api/templates/email/upsert"
+HEADERS = {'Api-Key': API_KEY, 'Content-Type': 'application/json'}
+
+# Lookup table for message type IDs and their corresponding folder names
+FOLDER_LOOKUP = {
+    "64268": "src/templates/email/marketing/cartReminders_64268",
+    "64265": "src/templates/email/marketing/dailyPrommotional_64265",
+    "64269": "src/templates/email/marketing/productSuggestions_64269",
+    "64267": "src/templates/email/marketing/weeklyNewsletter_64267",
+    "64266": "src/templates/email/marketing/weeklyPromotional_64266"
+    # TODO: include transactional paths and message types
+}
 
 # Your Iterable API key and endpoint
 API_KEY = os.getenv('ITERABLE_API_KEY')
